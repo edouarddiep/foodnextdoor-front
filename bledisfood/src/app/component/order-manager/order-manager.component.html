@@ -1,0 +1,67 @@
+<div class="summary-container">
+  <div class="top mat-elevation-z0">
+    <h1 class="mat-headline">Suivi de commande</h1>
+  </div>
+  <div class="middle mat-elevation-z0">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let item of fullContents">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Commande : {{item.id}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <div>Etat : {{states[item.state-1]}} </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="mat-h3">Plats</div>
+        <table mat-table [dataSource]="item.orderItems">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Plat </th>
+            <td mat-footer-cell *matFooterCellDef> Total </td>
+            <td mat-cell *matCellDef="let element">
+              {{element.dish.name}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantité </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.quantity}}
+            </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Prix </th>
+            <td mat-cell *matCellDef="let element">CHF
+              {{(element.price).toFixed(2)}} </td>
+            <td mat-footer-cell *matFooterCellDef>
+              CHF {{totalCost.toFixed(2)}}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns, sticky: true"></tr>
+        </table>
+        <span [hidden]="isCustomer()" class="mat-h3">Client : </span> <span
+          [hidden]="isCustomer()">{{item.customer.user.first_name}} {{item.customer.user.last_name}}</span>
+        <br />
+        <span [hidden]="!isCustomer()" class="mat-h3">Vendeur : </span> {{item.vendor.user.first_name}}
+        {{item.vendor.user.last_name}}<br />
+        <span [hidden]="!isCustomer()" class="mat-h3">Addresse : </span> {{item.vendor.no_rue}} {{item.vendor.adresse}}
+        <br />
+        <div [hidden]="isCustomer()">
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Passer à l'état suivant</button>
+          </mat-action-row>
+        </div>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </div>
+  <div class="bottom mat-elevation-z0">
+    <button class="action-button" mat-raised-button color="primary" (click)="goHome()">Retourner a la page
+      d'accueuil</button>
+  </div>
+</div>

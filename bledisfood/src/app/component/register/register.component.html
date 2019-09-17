@@ -1,0 +1,73 @@
+<div class="card">
+  <mat-card>
+    <h1 class="title">Formulaire d'inscription</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" id="registerForm" *ngIf="isReady">
+      <mat-card-content class="card-content">
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Nom</mat-label>
+          <input matInput placeholder="" formControlName="last_name"
+            [ngClass]="{ 'is-invalid': submitted && registerForm.get('last_name')?.errors }">
+          <div *ngIf="submitted && registerForm.get('last_name')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('last_name')?.hasError('required')">Nom de famille requis</div>
+            <div *ngIf="registerForm.get('last_name')?.hasError('pattern')">Le nom est invalide ! (minimum 2 lettres)</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Prénom</mat-label>
+          <input matInput placeholder="" formControlName="first_name"
+            [ngClass]="{ 'is-invalid' : submitted && registerForm.get('first_name')?.errors}">
+          <div *ngIf="submitted && registerForm.get('first_name')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('first_name')?.hasError('required')">Prénom requis</div>
+            <div *ngIf="registerForm.get('first_name')?.hasError('pattern')">Le prénom est invalide ! (minimum 2 lettres)</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">E-mail</mat-label>
+          <input type="email" matInput placeholder="" formControlName="email"
+            [ngClass]="{'is-invalid' : submitted && registerForm.get('email')?.errors}">
+          <div *ngIf="submitted && registerForm.get('email')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('email')?.hasError('required')">Un email est requis</div>
+            <div *ngIf="registerForm.get('email')?.hasError('pattern')">Le mail n'est pas valide</div>
+          </div>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Nom d'utilisateur</mat-label>
+          <input matInput placeholder="" formControlName="username"
+            [ngClass]="{'is-invalid' : submitted && registerForm.get('username')?.errors}">
+          <div *ngIf="submitted && registerForm.get('username')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('username')?.hasError('required')">Un nom d'utilisateur est requis</div>
+            <div *ngIf="registerForm.get('username')?.hasError('pattern')">Le nom d'utilisateur doit au moins comporter 3 lettres (chiffres non acceptés) !</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Mot de passe</mat-label>
+          <input matInput placeholder="" formControlName="password" type="password"
+            [ngClass]="{'is-invalid' : submitted && registerForm.get('password')?.errors}">
+          <div *ngIf="submitted && registerForm.get('password')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('password')?.hasError('required')">Un mot de passe est requis</div>
+            <div *ngIf="registerForm.get('password')?.hasError('minlength')">Le mot de passe doit faire au moins 6 caractères</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Confirmer le mot de passe</mat-label>
+          <input matInput placeholder="" formControlName="password_confirm" type="password"
+            [ngClass]="{ 'is-invalid' : submitted && registerForm.get('password_confirm')?.errors}">
+          <div *ngIf="submitted && registerForm.get('password_confirm')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('password_confirm')?.hasError('required')">Veuillez confirmer le mot de passe</div>
+            <div *ngIf="registerForm.get('password_confirm')?.hasError('mustMatch')">Les mots de passe ne correspondent pas !</div>
+          </div>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions class="card-action">
+        <button mat-raised-button color="primary" class="button-field">S'inscrire</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

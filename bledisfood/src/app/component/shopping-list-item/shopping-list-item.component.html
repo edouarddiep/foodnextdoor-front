@@ -1,0 +1,25 @@
+<li class="clearfix">
+  <div class="item-grid">
+    <img class="item-photo" border=none src={{dishPhoto}} />
+    <div class="item-details">
+      <span class="item-name">{{dish.name}}</span>
+      <span class=".item-quantity-buttons">
+        <button mat-icon-button>
+          <mat-icon class="icon-size" (click)="decrement()">remove_circle</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon class="icon-size" (click)="increment()">add_circle</mat-icon>
+        </button>
+      </span>
+      <span class="quantity-text-wrapper">Quantité: {{itemCounter.get(dish.id)}}</span>
+    </div>
+    <div class="item-price">
+      <span>CHF {{getTotalPrice().toFixed(2)}}</span>
+    </div>
+    <div class="remove-wrapper">
+      <button mat-icon-button (click)="remove()">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </div>
+  </div>
+</li>

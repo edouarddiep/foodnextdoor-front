@@ -1,0 +1,19 @@
+<mat-card class="slide-card-compact" id="card{{dish.id}}">
+  <mat-card-header>
+    <mat-card-title>{{dish.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image class="card-image-format" border="none" src="{{dishPhoto}}">
+  <mat-card-content fxLayout="column" fxLayoutAlign="center">
+    <br>
+    <p>
+      CHF {{dish.price.toFixed(2)}}
+    </p>
+    <mat-slide-toggle [checked]="autoRenew" (change)="onChange($event)">
+      Ce plat est 
+      <label *ngIf="isActive">actif</label>
+      <label *ngIf="!isActive">inactif</label>
+    </mat-slide-toggle>
+    <br>
+    <button mat-raised-button  (click)="openModal()" color="warn" id="btnSupprimer">Supprimer</button>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,45 @@
+<div class="wrapper-search">
+    <div class="search-comp">
+      <mat-form-field class="list-select">
+        <mat-select placeholder="Catégories" [(ngModel)]="selectedCategory" (selectionChange)="setFilter($event)" id="select-category">
+          <mat-option *ngFor="let category of categories" [value]="category">
+            <div>
+              {{ category }}
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="search-comp" id="country-list" style="height: 0; width:0; visibility: hidden; opacity:0">
+      <mat-form-field class="list-select">
+        <mat-select placeholder="Sélectionner un pays" [(ngModel)]="selectedCountry" id="select-country"> 
+          <mat-option *ngFor="let country of countries" [value]="country">
+            <div>
+              {{ country }}
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="search-comp" id="search-bar">
+      <mat-form-field (keydown)="showResults($event)" id="form" class="search-bar">
+        <mat-label>Rechercher</mat-label>
+        <input matInput placeholder="Veuillez saisir le nom d'un plat" [(ngModel)]="searchContent" (ngModelChange)="displayAllDishes($event)" id="searchBar" autocomplete="off" />
+      </mat-form-field>
+    </div>
+    <div class="search-comp">
+      <button mat-icon-button (click)="showResults($event)" class="btn-search" id="btnSearch">
+          <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <div class="advanced-search-wrapper" id="advanced">
+      <mat-checkbox color="primary" class="advanced-filter" [(ngModel)]="isHalal" (change)="displayDishesByFilter()">
+      Halal    
+      </mat-checkbox>
+      <mat-checkbox color="primary" class="advanced-filter" [(ngModel)]="isVegan" (change)="displayDishesByFilter()">
+      Vegan
+      </mat-checkbox>
+    </div>
+  </div>
+  
+  

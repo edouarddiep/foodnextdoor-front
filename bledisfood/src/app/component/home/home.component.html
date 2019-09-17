@@ -1,0 +1,33 @@
+<div style="margin-bottom: 50px">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+      <agm-marker  *ngFor="let mark of lstLocalisations" [(latitude)]="mark.lat" [longitude]="mark.lng">
+        <agm-info-window style="text-align: center" maxWidth="30px"><img (click)="navigateToVendor(mark.vendor)" src="data:image/jpeg;base64,{{mark.vendor.photo}}" alt="" style="max-width: 30px; max-height:30px">
+          <p>{{mark.vendor.user.last_name}}</p>
+        </agm-info-window>
+      </agm-marker>
+      <agm-marker [(latitude)]="lat" [longitude]="lng" [iconUrl]="icon"></agm-marker>
+    </agm-map>
+    <app-search></app-search>
+  </div>
+  <div class="title" fxLayoutAlign="center" *ngIf="dishes.length===totalDishes">
+    <h1 class="mat-headline" id="title">Plats du moment</h1>
+  </div>
+  <div class="title" fxLayoutAlign="center" *ngIf="dishes.length<totalDishes">
+    <h1 class="mat-headline" id="title">Plats recherchés</h1>
+  </div>
+  <div *ngIf="isLoading" class="loading-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+  <div class="borderframe" [hidden]="isLoading">
+    <div class="borderframe-child" id="dishCard">
+      <div *ngFor="let dish of dishes">
+        <app-card [dish]="dish"></app-card>
+      </div>
+    </div>
+    <div *ngIf="dishes.length == 0 && cpt == 1" [hidden]="isLoading">
+      <h3 style="text-align: center; margin-top:30px">Aucun plat ne correspond à cette recherche</h3>
+    </div>
+  </div>
+  
+  
+  

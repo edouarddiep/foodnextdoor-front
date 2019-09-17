@@ -1,0 +1,226 @@
+.fullPage{
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.mat-headline{
+  align-self: center;
+}
+
+.dishPhoto{
+  margin-top: 5%;
+  max-width: 100%;
+  height: 600px;
+  width: 600px;
+  min-width: 400px;
+  border-radius: 50%;
+}
+
+.tile-allergens{
+  display: block;
+}
+
+.vendorPhoto{
+  max-width: 100%;
+  min-width: 20px;
+  border-radius: 50%;
+  width:30%;
+  height:30%;
+  cursor: pointer;
+}
+
+.mat-grid-list{
+  overflow: auto;
+  margin-bottom: 15px;
+  
+  margin-left: 5%;
+  margin-right: 5%;
+  vertical-align: middle;
+ 
+  
+}
+
+mat-raised-button{
+  position: absolute;
+  margin: auto;
+ 
+}
+
+.fa-drumstick-bite{
+  color : orange;
+}
+
+.tile-prix{
+  align-content: right
+}
+
+
+.mat-raised-button{
+  width: 100%;
+  
+  text-align: center;
+  
+}
+
+.mat-figure{
+  justify-content: left;
+}
+
+header{
+  align-items: left;
+  height: 20px;
+}
+
+div-prix{
+  float: right;
+}
+
+.p-prix{
+  float: right;
+  font-size: 25px;
+  color : green;
+  text-align: left; 
+  justify-content: left;
+  position: relative;
+  display: block;
+}
+
+.fa-globe-europe{
+  color: #00008B;
+}
+
+.fa-fire-alt{
+  color: #F62817;
+}
+
+.fa-fire-alt-noir{
+  color : black;
+}
+
+.fa-fire-alt{
+  opacity: 0.65;
+}
+
+.fa-carrot{
+  color: orange;
+}
+
+.fa-check{
+  padding: 10px;
+  color: green;
+}
+
+.fa-times{
+  padding: 10px;
+  color: red;
+}
+
+@media only screen and (min-width: 700px){
+
+
+  .button-div{
+    width: 50%; 
+    margin: 0 auto;
+    
+  }
+
+  
+
+  .grid-wrapper{
+    margin-top : 10%;
+    margin-right: 10%;
+    
+  }
+
+  .div-prix{
+    float: right;
+  }
+
+
+  .leftVerticalAlign {
+    left: 1em;    
+    position: absolute;  
+    top: 50%;
+    transform: translate(0px, -50%);
+    margin: 0;
+}
+
+  .dishPhoto{
+    align-items: center;
+    align-content: center;
+    max-width: 100%;
+    width: 40%;
+    height: 300px;
+    min-width: 300px;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+    margin-top: 20%;
+  }
+
+  h2{
+    font-weight:normal;
+    font-size: 30px;
+    text-align: left;
+  }
+
+  .ToTheLeft{
+    width: 100%; 
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 699px){
+  h2{
+    font-weight:normal;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .btnAjouter{
+    margin-bottom:20px;
+  }
+
+  .button-div{
+    display: block;
+    width: 100%;
+  }
+
+  .tile-vendor{
+    text-align: center;
+    align-content: left;
+    justify-content: left;
+  }
+
+  .vendorPhoto{
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: 20px;
+  }
+
+  .dishPhoto{
+    margin-top: 5%;
+    max-width: 200px;
+    height: 200px;
+    width: 200px;
+    min-width: 200px;
+    border-radius: 50%;
+  }
+
+
+
+  .grid-wrapper{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    place-content: stretch center;
+    align-items: stretch;
+    flex: 1 1 100%;
+    max-height: 50%;
+    width: 100%;
+    
+  }
+
+}

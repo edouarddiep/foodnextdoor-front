@@ -1,0 +1,31 @@
+<div class="card">
+  <mat-card>
+    <h1 class="title">Se connecter à l'application</h1>
+    <form class="example-form" [formGroup]="userLogin">
+      <mat-card-content class="card-content">
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label class="input-label">Nom d'utilisateur</mat-label>
+          <input matInput placeholder="" [(ngModel)]="username" name="username" formControlName="username">
+          <mat-error *ngIf="userLogin.get('username').hasError('required')">
+            Le nom d'utilisateur est <strong>requis</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label class="input-label">Mot de passe</mat-label>
+          <input matInput placeholder="" [(ngModel)]="password" type="password" name="password" formControlName="password">
+          <mat-error *ngIf="userLogin.get('password').hasError('required')">
+            Le mot de passe est <strong>requis</strong>
+          </mat-error>
+        </mat-form-field>
+        <br/>
+        <div class="link-wrapper">
+          <a [routerLink]="['/choice']" class="login-link">Nouveau sur l'application ?</a>
+          <!--<a [routerLink]="['/reset']" class="login-link">Mot de passe oublié ?</a>-->
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-raised-button type="submit" (click)="login()" color="primary">Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

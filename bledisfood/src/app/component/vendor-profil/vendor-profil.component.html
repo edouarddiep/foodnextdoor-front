@@ -1,0 +1,19 @@
+<div class="borderframe">
+  <div class="borderframe-header" id="header">
+    <div class="img-wrapper" id="vendorImg">
+        <img src="data:image/jpeg;base64,{{vendor.photo}}" class="img">
+    </div>
+    <div class="vendor-wrapper" id="vendorInfos">
+        <h4>{{firstName}} {{lastName}}</h4>
+        <h4>{{codePostal}} {{ville}} - {{pays}}</h4>
+    </div>
+  </div>
+  <div class="borderframe-child" id="dishCard">
+    <div *ngIf='dishes?.length == 0' style="text-align: center; margin-top:30px"><h3>Aucun plat à disposition pour le moment.</h3></div>
+    <div *ngFor="let dish of dishes">
+      <ng-container *ngIf="dish.isActive">
+          <app-card [dish]="dish"></app-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

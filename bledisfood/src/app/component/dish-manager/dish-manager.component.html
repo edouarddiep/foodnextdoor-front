@@ -1,0 +1,26 @@
+<div class="borderframe">
+  <div class="borderframe-header" id="header">
+    <div class="img-wrapper">
+        <img src="{{vendorPhoto}}" class="img">
+    </div>
+    <div class="vendor-wrapper">
+        <h4>{{vendorUser.first_name}} {{vendorUser.last_name}}</h4>
+        <h4>{{vendorNoRue}} {{vendorAddress}}</h4>
+        <h4>{{vendorCodePostal}} {{vendorVille}} - {{vendorCountry}}</h4>
+        <h4>IBAN : {{vendorIban}}</h4>
+    </div>
+  </div>
+  <div class="borderframe-child" id="child">
+    <div *ngFor="let dish of dishes">
+      <app-card-manager [dish]="dish"></app-card-manager>
+    </div>
+    <mat-card class="new-dish-card" (click)="goToCreateDish()">
+      <mat-card-header>
+        <mat-card-title>Cliquez pour <br/>ajouter un plat</mat-card-title>
+      </mat-card-header>
+      <div mat-card-avatar class="add-icon" color="primary">
+          <i class="fas fa-3x fa-plus-circle"></i>
+      </div>
+    </mat-card>
+  </div>
+</div>

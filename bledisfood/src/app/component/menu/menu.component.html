@@ -1,0 +1,66 @@
+<mat-toolbar color="primary">
+  <a mat-button class="companyName" routerLink="/">
+    <span><i class="fas fa-mitten">FoodNextDoor</i></span>
+  </a>
+  <span class="example-spacer"></span>
+  <div *ngIf="router.url !== '/dish-manager'; then showManageDish"></div>
+  <ng-template #showManageDish>
+    <div fxShow="true">
+      <a fxShow.lt-md="false" *ngIf="isLogged() && !isCustomer()" mat-button routerLink="/dish-manager">Gérer les
+        plats</a>
+    </div>
+  </ng-template>
+  <div *ngIf="router.url !== '/create-dish'; then showCreateDish"></div>
+  <ng-template #showCreateDish>
+    <div fxShow="true">
+      <a fxShow.lt-md="false" *ngIf="isLogged() && !isCustomer()" mat-button routerLink="/create-dish">Créer un plat</a>
+    </div>
+  </ng-template>
+  <div *ngIf="router.url !== '/login'; then showLogin"></div>
+  <ng-template #showLogin>
+    <div fxHide.lt-md="true" fxShow="true">
+      <div [ngSwitch]="isLogged()" style="display: inline-block">
+        <div *ngSwitchCase="true"><a mat-button routerLink="/home" (click)="logout()" *ngIf="isLogged()">Se
+            déconnecter</a>
+        </div>
+        <div *ngSwitchDefault>
+          <a mat-button routerLink="/login" *ngIf="!isLogged()">Se connecter</a>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div *ngIf="router.url !== '/choice' && router.url !== '/register' && router.url !== '/merchant'; then showRegister"></div>
+  <ng-template #showRegister>
+      <div fxShow="true">
+          <a fxHide.lt-md="true" *ngIf="!isLogged()" mat-button routerLink="/choice">S'inscrire</a>
+        </div>
+  </ng-template>
+
+  <div fxShow.lt-md="true" fxHide="true">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="router.url !== '/order-summary'; then showCart"></div>
+  <ng-template #showCart>
+    <button mat-icon-button (click)="displayCart()">
+      <mat-icon class="custom-badge" matBadge="{{badgeCount}}" matBadgeColor="warn" matBadgeSize="medium"
+        [matBadgeHidden]="badgeCount==0">
+        shopping_cart
+      </mat-icon>
+    </button>
+  </ng-template>
+</mat-toolbar>
+<mat-sidenav-container class="container">
+  <mat-sidenav position="end" color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxShow.lt-md="true"
+    fxHide="true">
+    <div fxLayout="column">
+      <a class="menu-font" *ngIf="isLogged()" mat-button routerLink="/home" (click)="logout()">Se déconnecter</a>
+      <a class="menu-font" mat-button *ngIf="isLogged() && !isCustomer()" routerLink="/dish-manager">Gérer les plats</a>
+      <a class="menu-font" mat-button *ngIf="isLogged() && !isCustomer()" routerLink="/create-dish">Créer un plat</a>
+      <a class="menu-font" *ngIf="!isLogged()" mat-button routerLink="/login">Se connecter</a>
+      <a class="menu-font" *ngIf="!isLogged()" mat-button routerLink="/choice">S'inscrire</a>
+    </div>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

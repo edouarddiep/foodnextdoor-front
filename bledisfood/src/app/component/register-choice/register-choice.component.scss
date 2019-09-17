@@ -1,0 +1,36 @@
+.title{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:3vw;
+    min-width: 2vw;
+    margin-top: 5%;
+    @media screen and(max-width:720px){
+        font-size:6vw;
+    }
+}
+
+.title2{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:1vw;
+    min-width: 2vw;
+    margin-top: 2%;
+    @media screen and(max-width:720px){
+        font-size:2.5vw;
+    }
+}
+
+
+.client{
+    width: 100px;
+    height: 40px;
+    margin-right: 5%;
+}
+.marchand{
+    width: 100px;
+    height: 40px;
+    margin-left: 5%;
+}
+.container{
+    margin-top: 10%;
+    text-align: center;
+    vertical-align: middle;
+}

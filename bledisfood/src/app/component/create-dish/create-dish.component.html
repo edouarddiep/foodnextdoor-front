@@ -1,0 +1,104 @@
+<div *ngIf="dishCreated" style="background-color: rgba(255, 255, 255, 0.); height: 100vh; width: 100vw; z-index:1;     display: flex;
+justify-content: center;">
+  <div *ngIf="dishCreated" style="padding: 20%;">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+</div>
+<div class="card" *ngIf="!dishCreated">
+  <mat-card>
+    <h1 class="title">Créer un plat</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <mat-card-content class="card-content">
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Nom</mat-label>
+          <input matInput placeholder="nom" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && registerForm.get('name')?.errors }">
+          <div *ngIf="submitted && registerForm.get('name')?.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.get('name')?.hasError('required')">Nom de plat requis</div>
+              <div *ngIf="registerForm.get('name')?.hasError('pattern')">Nom de plat invalide ! (minimum 3 lettres)</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Prix</mat-label>
+          <input matInput type="number" placeholder="Exemple : 12,90" step="0.10" min="1" max="50" formControlName="price"  [ngClass]="{ 'is-invalid' : submitted && registerForm.get('price')?.errors}">
+          <div *ngIf="submitted && registerForm.get('price').errors" class="invalid-feedback">
+              <div *ngIf="registerForm.get('price')?.hasError('required')">Prix requis</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Pays</mat-label>
+          <mat-select formControlName="country" [ngClass]="{'is-invalid' : submitted && registerForm.get('country')?.errors}">
+            <mat-option *ngFor="let country of countries" [value]="country">
+              <div>
+                {{ country }}
+              </div>
+            </mat-option>
+          </mat-select>
+          <div *ngIf="submitted && registerForm.get('country')?.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.get('country')?.hasError('required')">Un pays est requis</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Quel est le taux d'épices du plat ?</mat-label>
+          <input matInput type="number" placeholder="[0-3]" id="howSpicy" name="howSpicy" min="0" max="3" maxlength="1" formControlName="howSpicy" [ngClass]="{'is-invalid' : submitted && registerForm.get('howSpicy')?.errors}" (keydown)="onKeyDown($event)">
+          <div *ngIf="submitted && registerForm.get('howSpicy')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('howSpicy')?.hasError('required')">Un taux d'épices est requis</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" class="input-field">
+          <mat-label class="input-label">Allergens</mat-label>
+          <mat-select formControlName="allergens" (selectionChange)="detectAllergensDisabled()" [(ngModel)]="selectedAllergens" [ngClass]="{'is-invalid' : submitted && registerForm.get('allergens')?.errors}" multiple>
+            <mat-option *ngFor="let allergen of listeAllergens" [value]="allergen">
+              <div>
+                {{ allergen.name }}
+              </div>
+            </mat-option>
+          </mat-select>
+          <div *ngIf="submitted && registerForm.get('allergens')?.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.get('allergens')?.hasError('required')">Au moins un allergen est requis</div>
+          </div>
+        </mat-form-field>
+        
+        <div class="radio-group">
+          Ce plat est vegan* : 
+          <mat-radio-group formControlName="isVegan" (change)="test()" [disabled]="isVeganDisabled">
+            <mat-radio-button class="radio-choice" color="primary" value="true">Oui</mat-radio-button>  
+            <mat-radio-button class="radio-choice" color="primary" value="false">Non</mat-radio-button>  
+          </mat-radio-group>
+          <div *ngIf="submitted && registerForm.get('isVegan')?.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.get('isVegan')?.hasError('required')" style="color:red">Veuillez choisir si le plat est vegan ou non.</div>
+          </div>   
+          <p class="term-definition">*A sélectionner pour tout plat composé de produits à base de végétaux uniquement.</p>
+        </div>
+        <br/>
+        <div class="radio-group">
+          Ce plat est halal* : 
+          <mat-radio-group formControlName="isHalal" (change)="test()" [disabled]="isHalalDisabled" >
+            <mat-radio-button class="radio-choice" color="primary" value="true">Oui</mat-radio-button>  
+            <mat-radio-button class="radio-choice" color="primary" value="false">Non</mat-radio-button>  
+          </mat-radio-group>
+          <div *ngIf="submitted && registerForm.get('isHalal')?.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.get('isHalal')?.hasError('required')" style="color:red">Veuillez choisir si le plat est halal ou non.</div>
+          </div> 
+          <p class="term-definition">*A sélectionner pour tout plat excluant toute trace de viande de porc.</p>  
+        </div>
+        <br/>
+        <br/>
+        <div class="photo-wrapper">
+          <mat-label class="input-label">Photo du plat &nbsp; </mat-label>
+          <input type="file" name="photo" formControlName="photo" accept="image/*" (change)="onChange($event)" [ngClass]="{ 'is-invalid' : submitted && registerForm.get('photo')?.errors}">    
+        </div>
+        <div *ngIf="submitted && registerForm.get('photo')?.errors" class="invalid-feedback">
+          <div *ngIf="registerForm.get('photo')?.hasError('required')" style="color:red">Veuillez sélectionner une photo.</div>
+        </div> 
+      </mat-card-content>
+      <mat-card-actions class="card-action">
+          <button mat-raised-button type="submit" color="primary" class="button-field">Enregistrer</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

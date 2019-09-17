@@ -1,0 +1,120 @@
+html,
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+.summary-container {
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+table {
+  width: 100%;
+  max-height: 60vh;
+  overflow: auto;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.top {
+  position: relative;
+  top: 25px;
+  left: 0px;
+  height: 50px;
+  right: 0px;
+  overflow: hidden;
+  text-align: center;
+
+  @media screen and (max-width: 600px) {
+    position: absolute;
+  }
+}
+
+.middle {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    top: 65px;
+    bottom: 135px;
+    width: 100%;
+  }
+}
+
+.bottom {
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    max-height: 135px;
+    bottom: 20px;
+    position: absolute;
+  }
+}
+
+button {
+  margin-left: 23px;
+  margin-right: 23px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type {
+  padding: 0;
+}
+
+.remove-wrapper {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.mat-column-price {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 100px !important;
+  width: 100px !important;
+  overflow-wrap: break-word;
+}
+
+.mat-column-quantity {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 100px !important;
+  width: 100px !important;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.mat-column-price {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 100px !important;
+  width: 100px !important;
+  overflow-wrap: break-word;
+}

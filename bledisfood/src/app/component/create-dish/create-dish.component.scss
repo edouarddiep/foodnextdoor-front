@@ -1,0 +1,73 @@
+.card{
+    display: block;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
+    width:80%;
+    .term-definition{
+        text-align: left;
+        font-size:0.75em;
+    }
+}
+
+.title{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:4vw;
+    min-width: 2vw;
+    margin:5px 0 5px 0;
+}
+
+.input-field{
+    display: block;
+}
+
+
+.radio-group{
+    text-align:left;
+    display: block;
+
+    .radio-choice{
+        padding-right: 10px;
+    }
+}
+
+.photo-wrapper{
+    text-align:center;
+}
+
+.input-label{
+    font-size:10px;
+}
+
+.button-field{
+    width:80px;
+    font-size: 10px;
+}
+
+.card-action{
+    padding:0;
+}
+
+// RESPONSIVE PC SCREENS
+@media screen and (min-width:720px){
+
+    .card{
+        width:50%;
+ 
+    }
+
+    .title{
+        font-size:2vw;
+        margin:25px 0 25px 0;
+    }
+
+    .input-label{
+        font-size:15px;
+    }
+
+    .button-field{
+        width:30%;
+        font-size: 1vw;
+    }    
+}

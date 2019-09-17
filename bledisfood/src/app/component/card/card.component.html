@@ -1,0 +1,16 @@
+<mat-card class="slide-card-compact" (click)="showDish(dish)" id="dishCard" *ngIf="isReady && dish.isActive">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"><img src="{{vendorPhoto}}" class="img"></div>
+      <mat-card-title>{{dish.name}}</mat-card-title>
+      <mat-card-subtitle>{{dishVendor.user.first_name}} {{dishVendor.user.last_name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="card-image-format" border="none" src="{{dishPhoto}}">
+    <mat-card-content>
+      <br>
+      <p>
+        CHF {{dish.price.toFixed(2)}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  
+  

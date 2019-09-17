@@ -1,0 +1,107 @@
+<div class="fullPage" *ngIf="isReady" id="dishInfos">
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center center">
+      <div class="image-plat" fxFlex="50%">
+        <img border="none" src="{{dishPhoto}}" class="dishPhoto">
+        <div class="rating-wrapper">
+        </div>
+      </div>
+      <div class="grid-wrapper" fxFlex="50%" fxLayout="column" fxLayoutAlign="center" (window:resize)="onResize($event)">
+        <h2>{{dish.name}}</h2>
+        <mat-grid-list cols="{{test}}" rowHeight="80px">
+  
+          <mat-grid-tile class="body-1">
+            <div class="ToTheLeft"><i class="fas fa-3x fa-globe-europe" title="provenance du plat" *ngIf="isReady"></i>
+              <a class="ToTheLeft">Provenance : {{dishCountry}}</a>
+            </div>
+          </mat-grid-tile>
+  
+        </mat-grid-list>
+  
+        <!-- Boucle qui va afficher les flammes selon le howSpicy -->
+        <mat-grid-list cols="{{test}}" rowHeight="150px">
+          <mat-grid-tile class="body-1" [ngSwitch]=dish.howSpicy>
+            <div class="ToTheLeft">
+              <p *ngSwitchDefault title="taux d'épices inexistant">
+                <i class="fas  fa-3x fa-fire-alt" style="color:black"></i>
+                <i class="fas fa-3x fa-fire-alt" style="color:black"></i>
+                <i class="fas fa-3x fa-fire-alt" style="color:black"></i>
+              </p>
+              <p *ngSwitchCase="1" title="taux d'épices bas">
+                <i class="fas  fa-3x fa-fire-alt" style="color:red"></i>
+                <i class="fas fa-3x fa-fire-alt" style="color:black"></i>
+                <i class="fas fa-3x fa-fire-alt" style="color:black"></i>
+              </p>
+              <p *ngSwitchCase="2" title="taux d'épices moyen">
+                <i class="fas fa-3x fa-fire-alt" style="color:red"></i>
+                <i class="fas  fa-3x fa-fire-alt" style="color:red"></i>
+                <i class="fas fa-3x fa-fire-alt" style="color:black"></i>
+              </p>
+              <p *ngSwitchCase="'3'" title="taux d'épices fort">
+                <i class="fas fa-3x fa-fire-alt" style="color:red"></i>
+                <i class="fas  fa-3x fa-fire-alt" style="color:red"></i>
+                <i class="fas  fa-3x fa-fire-alt" style="color:red"></i>
+              </p>
+            </div>
+          </mat-grid-tile>
+          <!-- Fin de la boucle -->
+          <mat-grid-tile class="body-1">
+            <div class="tile-allergens">Allèrgenes :&nbsp;
+              <div *ngFor="let ad of dishAllergens ; let i = index" [attr.data-index]="i">
+                <div *ngFor="let allergen of allergens">
+                  <div *ngIf="ad.allergen==allergen.id">
+                    <!-- Test if dish list of allergen ids match with all allergen ids-->
+                    {{allergen.name}}<span *ngIf="i < dishAllergens.length-1">,&nbsp;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <!-- choix entre Vegan et non Vegan-->
+        <mat-grid-list cols="{{test}}" rowHeight="80px">
+          <mat-grid-tile class="body-1" [ngSwitch]=dish.isVegan>
+            <div class="ToTheLeft">
+              <p *ngSwitchCase="false" title="Ce plat n'est pas vegan">
+                <i class="fas fa-3x fa-drumstick-bite"></i>
+              </p>
+              <p *ngSwitchCase="true" title="Ce plat est vegan">
+                <i class="fas fa-3x fa-carrot"></i>
+              </p>
+            </div>
+          </mat-grid-tile>
+          <!-- choix entre Halal et non Halal-->
+          <mat-grid-tile class="body-1" [ngSwitch]=dish.isHalal>
+            <div class="tile-halal">
+              <p *ngSwitchCase="false" title="Ce plat n'est pas halal">
+                <a class="fas  fa-3x fa-quran"></a>
+                <a class="fas fa-3x fa-times"></a>
+              </p>
+              <p *ngSwitchCase="true" title="Ce plat est halal">
+                <a class="fas fa-3x fa-quran"></a>
+                <a class="fas fa-2x fa-check"></a>
+              </p>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="{{test}}" rowHeight="180px">
+          <mat-grid-tile class="body-1">
+            <div class="tile-vendor">
+              <img border="none" src="{{vendorPhoto}}" class="vendorPhoto" (click)="navigateToVendor()">
+              <p class="ToTheLeft">{{vendorFirstName}} {{vendorLastName}}</p>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile class="body-1">
+            <div class="toTheLeft">
+              <p class="p-prix">CHF {{dishPrice}} </p>
+            </div>          
+          </mat-grid-tile>
+        </mat-grid-list>
+        <div class="button-div">
+          <button mat-raised-button color="primary" class="btnAjouter" (click)="addDish()">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  
+  </div>
