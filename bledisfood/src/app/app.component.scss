@@ -1,0 +1,57 @@
+.button {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+.companyName {
+  font-size: 150%;
+}
+
+div {
+  overflow: inherit;
+}
+
+a {
+  text-decoration: none;
+  font-size: 75%;
+  white-space: normal;
+}
+
+.menu-font {
+  text-decoration: none;
+  font-size: 100%;
+  white-space: normal;
+}
+
+button {
+  font-size: 100%;
+  min-width: min-content;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-sidenav-content {
+  font-size: 200%;
+  text-align: center;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 50px;
+}
